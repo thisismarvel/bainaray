@@ -1,7 +1,6 @@
 import { Analytics } from '@vercel/analytics/next'
 import { Instrument_Serif, Lexend, Outfit, Plus_Jakarta_Sans } from 'next/font/google'
 import type { Metadata, Viewport } from 'next'
-import { ThemeProvider } from 'next-themes'
 import './globals.css'
 
 const outfit = Outfit({ subsets: ['latin'], variable: '--font-outfit', display: 'swap' })
@@ -24,8 +23,8 @@ export const metadata: Metadata = {
         media: '(prefers-color-scheme: dark)',
       },
       {
-        url: '/icon.svg',
-        type: 'image/svg+xml',
+        url: '/icon.png',
+        type: 'image/png',
       },
     ],
     apple: '/apple-icon.png',
@@ -48,9 +47,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`antialiased ${outfit.variable} ${plusJakarta.variable} ${lexend.variable} ${instrumentSerif.variable}`}>
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
-          {children}
-        </ThemeProvider>
+        {children}
         {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>
     </html>
